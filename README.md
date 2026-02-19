@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛰️ Kunjan Soni | Applied AI Engineer Command Center
 
-## Getting Started
+[![Live Demo](https://img.shields.io/badge/Live-Demo-teal?style=for-the-badge&logo=vercel)](https://portfolio-final-chi-umber.vercel.app/)
+[![MCA Gold Medalist](https://img.shields.io/badge/MCA-Gold%20Medalist-gold?style=for-the-badge)](https://portfolio-final-chi-umber.vercel.app/)
 
-First, run the development server:
+An immersive, high-performance professional environment built for the next generation of Applied AI and Enterprise Architecture. This is not just a portfolio; it is a technical diagnostic of my engineering capabilities, featuring a 3D Eclipse Engine and a neural-linked interface.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔭 Technical Architecture
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Built with a modern, high-speed stack to ensure 60FPS performance and real-time data synchronization.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: Next.js 14 (App Router)
+- **3D Engine**: React Three Fiber & Three.js (Eclipse Background)
+- **Animations**: Framer Motion & Lenis Smooth Scroll
+- **Styling**: Tailwind CSS (Space-themed HUD)
+- **Data Uplink**: GitHub API (13-Project Sync) & LeetCode API
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ System Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🌑 Neural Reticle (Custom Cursor)
+A precision targeting system that reacts to interactive nodes, providing visual feedback as users navigate the "Neural Architecture" of my skills.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🔐 Verified Recruiter Handshake
+A secure terminal interface that protects contact details. Recruiters must "Authorize" access through a simulated command-line handshake to reveal professional contact protocols.
 
-## Deploy on Vercel
+### 📊 Intel Stats & Mission Log
+Real-time tracking of coding metrics (200+ DSA problems) and a comprehensive timeline of my technical internships at Techori and Saanvi Innovations.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🛰️ Autonomous Project Fleet
+A dynamic grid of 13+ modules, including my GenAI YouTube Assistant and Multimodal Sentiment Platform, synced directly with GitHub.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🛠️ Installation & Setup
+
+To initialize the command center locally:
+
+1. **Clone the Mothership**:
+   ```bash
+   git clone [https://github.com/Kunjsoni2505/portfolio-final.git](https://github.com/Kunjsoni2505/portfolio-final.git)
