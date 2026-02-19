@@ -1,65 +1,149 @@
-import Image from "next/image";
+"use client";
+import React, { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { getGithubRepos } from "@/lib/getGithubRepos";
+import { getLeetCodeStats } from "@/lib/getLeetCodeStats";
+
+// --- CORE SYSTEM COMPONENTS ---
+import Navbar from "@/components/Navbar"; 
+import Hero from "@/components/Hero";
+import Stats from "@/components/Stats";
+import CodingStats from "@/components/CodingStats";
+import TechConstellation from "@/components/TechConstellation";
+import Workshops from "@/components/Workshops";
+import Experience from "@/components/Experience";
+import ProjectCard from "@/components/ProjectCard";
+import SocialLinks from "@/components/SocialLinks";
+import BootSequence from "@/components/BootSequence";
+
+// --- HUD & ACCESSIBILITY MODULES ---
+import CustomCursor from "@/components/CustomCursor";
+import MobileNav from "@/components/MobileNav";
+import RecruiterTerminal from "@/components/RecruiterTerminal";
+import StarCanvas from "@/components/StarCanvas"; // Essential for the space background
+
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
+  const [isBooted, setIsBooted] = useState(false);
+  const [projects, setProjects] = useState<any[]>([]);
+  const [leetCodeData, setLeetCodeData] = useState<any>(null);
+
+  useEffect(() => {
+    async function initSystem() {
+      try {
+        const [projectsData, leetData] = await Promise.all([
+          getGithubRepos(),
+          getLeetCodeStats("kunj25")
+        ]);
+        setProjects(projectsData);
+        setLeetCodeData(leetData);
+      } catch (error) {
+        console.error("System_Error: Data uplink failed", error);
+      }
+    }
+    initSystem();
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="relative flex min-h-screen flex-col items-center px-6 py-24 sm:px-16 overflow-hidden">
+      {/* 🛰️ GLOBAL OVERLAYS (Independent of Boot State) */}
+      <StarCanvas />
+      <CustomCursor />
+
+      {/* --- PHASE 1: BOOT SEQUENCE --- */}
+      <AnimatePresence mode="wait">
+        {!isBooted && (
+          <BootSequence onComplete={() => setIsBooted(true)} />
+        )}
+      </AnimatePresence>
+
+      {/* --- PHASE 2: CORE INTERFACE --- */}
+      {isBooted && (
+        <>
+          {/* 🛰️ NAVIGATION & HANDSHAKE MODULES */}
+          <Navbar />
+          <MobileNav />
+          <RecruiterTerminal />
+
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            className="w-full flex flex-col items-center relative z-10"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            {/* 🌑 CORE IDENTITY */}
+            <section id="hero" className="w-full flex justify-center">
+              <Hero />
+            </section>
+
+            {/* 🌑 INTEL STATS */}
+            <section id="stats" className="w-full flex justify-center">
+              <Stats />
+            </section>
+
+            {/* 🌑 CODING METRICS */}
+            <CodingStats stats={leetCodeData} />
+
+            {/* 🌑 NEURAL ARCHITECTURE */}
+            <section id="skills" className="z-10 w-full mb-32">
+              <TechConstellation />
+            </section>
+
+            {/* 🌑 NEURAL UPGRADES (Workshops) */}
+            <section id="workshops" className="z-10 w-full mb-32">
+              <Workshops />
+            </section>
+
+            {/* 🌑 MISSION LOG (Experience) */}
+            <section id="experience" className="z-10 w-full mb-32">
+              <Experience />
+            </section>
+
+            {/* 🌑 PROJECT FLEET [13 MODULES] */}
+            <section id="projects" className="z-10 w-full max-w-7xl">
+              <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4 border-b border-white/10 pb-8">
+                <div>
+                  <h2 className="text-5xl font-bold text-white tracking-tight italic uppercase">Project Fleet</h2>
+                  <p className="text-zinc-500 mt-2 text-lg italic uppercase tracking-widest text-[10px]">
+                    Autonomous synchronization with GitHub active // 13_MODULES_LIVE
+                  </p>
+                </div>
+                <a 
+                  href="https://github.com/Kunjsoni2505" 
+                  target="_blank" 
+                  className="flex items-center gap-2 text-sm font-bold text-teal-500 hover:text-teal-400 transition-colors group"
+                >
+                  VIEW ALL MODULES <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {projects.length > 0 ? (
+                  projects.map((project, index) => (
+                    <ProjectCard key={project.id} project={project} index={index} />
+                  ))
+                ) : (
+                  <div className="col-span-full py-20 flex justify-center">
+                     <p className="text-zinc-600 font-mono text-xs animate-pulse tracking-[0.3em]">
+                      &gt; SECURE_CONNECTION_RE-ESTABLISHING...
+                    </p>
+                  </div>
+                )}
+              </div>
+            </section>
+
+            <SocialLinks />
+
+            <footer className="z-10 mt-40 pb-10 flex flex-col items-center gap-4">
+              <div className="h-px w-24 bg-gradient-to-r from-transparent via-zinc-800 to-transparent"></div>
+              <p className="text-zinc-600 text-[8px] font-mono tracking-[0.5em] uppercase text-center">
+                End of Transmission // Kunjan Soni // 2026
+              </p>
+            </footer>
+          </motion.div>
+        </>
+      )}
+    </main>
   );
 }
