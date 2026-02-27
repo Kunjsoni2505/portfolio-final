@@ -15,7 +15,8 @@ export async function getGithubRepos() {
     "Student-performance-prediction",
     "movie-recommend-system",
     "Analysis-and-visualization-on-video-game-sales",
-    "Spam-Filtering"
+    "Spam-Filtering",
+    "echorythm"
   ];
 
   try {
