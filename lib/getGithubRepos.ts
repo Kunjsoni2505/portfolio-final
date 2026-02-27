@@ -5,7 +5,8 @@ export async function getGithubRepos() {
   const FEATURED_NAMES = [
     "Sentiment_Analyzer",
     "Advanced-sorting-visualizer",
-    "Ai_chatbot-", 
+    "Ai_chatbot-",
+    "Echorythm",
     "SpringBoot_Project",
     "ethareal_canvas",
     "order-management",
@@ -15,8 +16,7 @@ export async function getGithubRepos() {
     "Student-performance-prediction",
     "movie-recommend-system",
     "Analysis-and-visualization-on-video-game-sales",
-    "Spam-Filtering",
-    "Echorythm"
+    "Spam-Filtering"
   ];
 
   try {
