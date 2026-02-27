@@ -16,7 +16,7 @@ export async function getGithubRepos() {
     "movie-recommend-system",
     "Analysis-and-visualization-on-video-game-sales",
     "Spam-Filtering",
-    "echorythm"
+    "Echorythm"
   ];
 
   try {
